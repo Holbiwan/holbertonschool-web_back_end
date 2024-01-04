@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+"""Coroutine called async_comprehension that takes no arguments"""
+
 from asyncio import sleep
 from random import uniform
 from typing import List

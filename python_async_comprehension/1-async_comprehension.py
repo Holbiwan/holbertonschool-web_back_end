@@ -5,14 +5,10 @@ from asyncio import sleep
 from random import uniform
 from typing import List
 
-
-async def async_generator() -> Generator[float, None, None]:
-    """Async Generator"""
-    for _ in range(10):
-        await sleep(1)
-        yield uniform(0, 10)
+async_generator = __import__('0-async_generator').async_generator
 
 
 async def async_comprehension() -> List[float]:
-    """Async Comprehension"""
-    return [i async for i in async_generator()]
+    """ Async comprehensions  """
+    a = [i async for i in async_generator()]
+    return a

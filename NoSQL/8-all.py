@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""List all documents in Python"""
+""" List all documents in Python """
 import pymongo
 
 
 def list_all(mongo_collection):
-    """List all documents in a collection"""
-    if mongo_collection is not None:
+    """ lists all documents in a collection """
+    if not mongo_collection:
         return []
-    return list (mongo_collection.find())
+    return list(mongo_collection.find())

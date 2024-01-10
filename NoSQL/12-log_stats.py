@@ -13,7 +13,7 @@ def count_all(mongo_collection):
 
 
 def count_method(mongo_collection, method):
-    """counts all documents in a collection with particular method
+    """counts all documents in a collection with a particular method
 
     :param mongo_collection: pymongo collection object
     :param method: method to be searched

@@ -1,31 +1,31 @@
-#!/usr/bin/python3
-"""log stats"""
+#!/usr/bin/env python3
+"""log stats from collection
+"""
 from pymongo import MongoClient
 
 
-def count_all(mongo_collection):
-    return mongo_collection.count_documents({})
+METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 
 
-def count_method(mongo_collection, method):
-    return mongo_collection.count_documents({"method": method})
+def log_stats(mongo_collection, option=None):
+    """ script that provides some stats about Nginx logs stored in MongoDB
+    """
+    items = {}
+    if option:
+        value = mongo_collection.count_documents(
+            {"method": {"$regex": option}})
+        print(f"\tmethod {option}: {value}")
+        return
+
+    result = mongo_collection.count_documents(items)
+    print(f"{result} logs")
+    print("Methods:")
+    for method in METHODS:
+        log_stats(nginx_collection, method)
+    status_check = mongo_collection.count_documents({"path": "/status"})
+    print(f"{status_check} status check")
 
 
 if __name__ == "__main__":
-    client = MongoClient('mongodb://127.0.0.1:27017')
-    logs_db = client.logs
-    nginx = logs_db.nginx
-    methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
-
-    print("{} logs".format(count_all(nginx)))
-
-    print("Methods:")
-    for method in methods:
-        print("\tmethod {}: {}".format(method, count_method(nginx, method)))
-
-    unique_paths = nginx.distinct("path")
-    print("Unique paths: {}".format(unique_paths))
-
-    status_check_count = count_method(
-        nginx, {"method": "GET", "path": "/status"})
-    print("{} status check".format(status_check_count))
+    nginx_collection = MongoClient('mongodb://127.0.0.1:27017').logs.nginx
+    log_stats(nginx_collection)

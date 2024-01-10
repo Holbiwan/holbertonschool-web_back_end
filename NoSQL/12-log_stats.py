@@ -16,15 +16,16 @@ if __name__ == "__main__":
     logs_db = client.logs
     nginx = logs_db.nginx
     methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
-    
+
     print("{} logs".format(count_all(nginx)))
-    
+
     print("Methods:")
     for method in methods:
         print("\tmethod {}: {}".format(method, count_method(nginx, method)))
-    
+
     unique_paths = nginx.distinct("path")
     print("Unique paths: {}".format(unique_paths))
-    
-    status_check_count = count_method(nginx, {"method": "GET", "path": "/status"})
+
+    status_check_count = count_method(
+        nginx, {"method": "GET", "path": "/status"})
     print("{} status check".format(status_check_count))

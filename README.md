@@ -1,6 +1,6 @@
 # Web Back-End
 
-This repo contains programs based on my Back-End Web Development projects 
+This repo contains my projects based on my Back-End Web Development
 
 ![Back-end](https://zupimages.net/up/24/02/rqxq.png)
 

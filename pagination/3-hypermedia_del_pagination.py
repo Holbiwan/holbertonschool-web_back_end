@@ -41,21 +41,17 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
-        """Implement method with two integers"""
-        assert isinstance(index, int) and isinstance(page_size, int)
-        assert 0 <= index < len(self.__indexed_dataset)
-        assert 0 < page_size <= len(self.__indexed_dataset)
-        dataset = self.indexed_dataset()
-        data = []
-        next_index = index
-        for _ in range(page_size):
-            while not dataset.get(next_index):
-                next_index += 1
-            data.append(dataset[next_index])
-            next_index += 1
-        return {
-            'index': index,
-            'data': data,
-            'page_size': len(data),
-            'next_index': next_index
-        }
+    """Implement method with two integers"""
+    assert isinstance(index, int) and isinstance(page_size, int)
+    assert 0 <= index < len(self.__indexed_dataset)
+    assert 0 < page_size <= len(self.__indexed_dataset)
+
+    dataset = self.indexed_dataset()
+    data = [dataset[next_index] for next_index in range(index, index + page_size) if dataset.get(next_index)]
+
+    return {
+        'index': index,
+        'data': data,
+        'page_size': len(data),
+        'next_index': index + len(data)
+    }

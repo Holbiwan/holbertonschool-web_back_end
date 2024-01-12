@@ -2,7 +2,7 @@
 
 This repo contains my projects based on my Back-End Web Development
 
-![Back-end](https://zupimages.net/up/24/02/rqxq.png)
+![Back-end](https://zupimages.net/up/24/02/n2cd.png)
 
 ## Technologies & Tools used in this repo :
 

@@ -4,12 +4,10 @@ export default function taskBlock(trueOrFalse) {
 
   // eslint-disable-next-line no-unused-vars
   if (trueOrFalse) {
-    const localTask = true;
-    const localTask2 = false;
-
+    const task = true;
     // eslint-disable-next-line no-unused-vars
-    return [localTask, localTask2];
+    const task2 = false;
   }
-
+  // eslint-disable-next-line no-unused-vars
   return [task, task2];
 }

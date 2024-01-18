@@ -11,4 +11,4 @@ function getSanFranciscoDescription() {
   of ${budget.gdp}, and a GDP per capita of ${budget.capita}.`;
 }
 
-module.exports = getSanFranciscoDescription;
+export default getSanFranciscoDescription;

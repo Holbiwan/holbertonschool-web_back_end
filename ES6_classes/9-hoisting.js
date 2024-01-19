@@ -7,7 +7,7 @@ export class HolbertonClass {
   get year() {
     return this._year;
   }
-  
+
   get location() {
     return this._location;
   }

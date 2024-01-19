@@ -8,8 +8,7 @@ export default class Currency {
         return this._code;
     }
     
-    // code
-    set code(code) {
+        set code(code) {
         if (typeof code === 'string') {
         this._code = code;
         } else {
@@ -17,8 +16,7 @@ export default class Currency {
         }
     }
     
-    // name
-    get name() {
+        get name() {
         return this._name;
     }
     
@@ -30,7 +28,6 @@ export default class Currency {
         }
     }
     
-    // displayFullCurrency
     displayFullCurrency() {
         return `${this._name} (${this._code})`;
     }

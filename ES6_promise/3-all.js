@@ -1,15 +1,20 @@
-import { uploadPhoto, createUser } from './utils';
+// Resolving multiple promises simultaneously
+// Using parentheses because return Promise resolves an object
+
+import { createUser, uploadPhoto } from './utils';
+
 
 function handleProfileSignup() {
-  const photoPromise = uploadPhoto();
-  const userPromise = createUser();
+  return Promise.all([uploadPhoto(), createUser()])
+    .then((values) => {
+      const { body } = values[0];
+      const { firstName, lastName } = values[1];
 
-  Promise.all([photoPromise, userPromise])
-    .then((results) => {
-      const [photo, user] = results;
-      console.log(`${photo.body} ${user.firstName} ${user.lastName}`);
+      console.log(`${body} ${firstName} ${lastName}`);
     })
-    .catch(() => console.log('Signup system offline'));
+    .catch(() => {
+      console.log('Signup system offline');
+    });
 }
 
 export default handleProfileSignup;

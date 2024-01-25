@@ -1,8 +1,7 @@
-// Resolving multiple promises simultaneously
-// Using parentheses because return Promise resolves an object
-
+/* Resolving multiple promises simultaneously
+   Using parentheses because return Promise resolves an object
+*/
 import { createUser, uploadPhoto } from './utils';
-
 
 function handleProfileSignup() {
   return Promise.all([uploadPhoto(), createUser()])

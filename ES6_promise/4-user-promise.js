@@ -1,4 +1,4 @@
-// Register a user
+// Sign Up user
 function signUpUser(firstName, lastName) {
     return Promise.resolve({
       firstName,

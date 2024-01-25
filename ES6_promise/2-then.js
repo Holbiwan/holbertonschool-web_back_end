@@ -6,7 +6,7 @@ export default function handleResponseFromAPI(promise) {
       })
       .catch(() => {
         console.log('Got a response from the API');
-        throw new Error(); // Utilisez 'throw' pour rejeter la promesse avec une erreur
+        throw new Error();
       });
   }
   

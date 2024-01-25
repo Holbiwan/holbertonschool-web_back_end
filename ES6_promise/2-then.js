@@ -1,9 +1,12 @@
+// Promise is handle or not
 function handleResponseFromAPI(promise) {
-  const body = { status: 200, body: 'success' };
-
   return promise
-    .then(() => body)
-    .catch((error) => error)
+    .then(() => ({
+      status: 200,
+      body: 'success',
+    }))
+    .catch(() => Error())
     .finally(() => console.log('Got a response from the API'));
 }
-export default handleResponseFromAPI;  
+
+export default handleResponseFromAPI;

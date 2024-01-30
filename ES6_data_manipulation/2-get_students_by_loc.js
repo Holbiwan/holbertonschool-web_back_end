@@ -1,11 +1,9 @@
-// GetStudentsByLocation function filters an array of students
-
-const getStudentsByLocation = (students, city) => {
-  const studentsLocation = students.filter(
-    (student) => student.location === city,
-  );
-
-  return studentsLocation;
-};
-
-export default getStudentsByLocation;  
+export default function getStudentsByLocation(students, city) {
+  console.log("Liste des étudiants reçue :", students);
+  
+  const studentsInCity = students.filter(student => student.location === city);
+  
+  console.log("Étudiants dans la ville spécifique :", studentsInCity);
+  
+  return studentsInCity;
+}

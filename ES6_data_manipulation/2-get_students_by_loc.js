@@ -1,9 +1,9 @@
 export default function getStudentsByLocation(students, city) {
-  console.log("Liste des étudiants reçue :", students);
+  console.log("Received list of students:", students);
   
   const studentsInCity = students.filter(student => student.location === city);
   
-  console.log("Étudiants dans la ville spécifique :", studentsInCity);
+  console.log("Students in the specific city:", studentsInCity);
   
   return studentsInCity;
 }

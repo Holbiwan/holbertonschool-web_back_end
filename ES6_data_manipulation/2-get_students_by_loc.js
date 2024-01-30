@@ -1,4 +1,4 @@
-// Filter based in the search of the city
+// getStudentsByLocation function filters an array of students
 
 const getStudentsByLocation = (students, city) => {
   const studentsLocation = students.filter(

@@ -5,5 +5,4 @@ const createInt8TypedArray = (length, position, value) => {
     return view;
   };
   
-  export default createInt8TypedArray;
-  
+  export default createInt8TypedArray;  

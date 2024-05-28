@@ -10,8 +10,8 @@
 * What MRU means ?
 * What LFU means ?
 * What a caching system is ?
-* What the purpose of a caching system ?
 * What limits a caching system have ?
+* What the purpose of a caching system ?
 
 
 ---

@@ -1,4 +1,4 @@
-# Caching 📌
+# Caching algorithms📌
 
 ![Holberton School Web back End](https://zupimages.net/up/24/22/piv5.png)
 

@@ -49,3 +49,23 @@ if __name__ == '__main__':
     )
     formatter = RedactingFormatter(fields=("email", "ssn", "password"))
     print(formatter.format(log_record))
+
+
+# Definition of important PII fields
+PII_FIELDS = ("name", "email", "phone", "ssn", "password")
+
+
+def get_logger() -> logging.Logger:
+    """Create and return a logger configured to obfuscate PII."""
+    # Create the logger
+    logger = logging.getLogger("user_data")
+    logger.setLevel(logging.INFO)
+    logger.propagate = False
+
+    # Configure StreamHandler with RedactingFormatter
+    stream_handler = logging.StreamHandler()
+    formatter = RedactingFormatter(fields=PII_FIELDS)
+    stream_handler.setFormatter(formatter)
+    logger.addHandler(stream_handler)
+
+    return logger

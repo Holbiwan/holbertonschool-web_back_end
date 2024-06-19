@@ -1,29 +1,64 @@
 #!/usr/bin/env python3
 """Regex-ing"""
 
+
 import logging
+import mysql.connector
+from os import environ
 import re
 from typing import List
 
 
-def filter_datum(fields: List[str], redaction: str,
-                 message: str, separator: str) -> str:
-    """Filter data in log message."""
-    for field in fields:
-        message = re.sub(
-            f"{field}=.*?{separator}",
-            f"{field}={redaction}{separator}",
-            message
-        )
+PII_FIELDS = ("name", "email", "phone", "ssn", "password")
+
+
+def filter_datum(
+    fields: List[str],
+    redaction: str,
+    message: str,
+    separator: str
+) -> str:
+    """Returns a log message obfuscated."""
+    for f in fields:
+        pattern = f'{f}=.*?{separator}'
+        substitution = f'{f}={redaction}{separator}'
+        message = re.sub(pattern, substitution, message)
     return message
 
 
+def get_logger() -> logging.Logger:
+    """Returns a Logger Object."""
+    logger = logging.getLogger("user_data")
+    logger.setLevel(logging.INFO)
+    logger.propagate = False
+
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(RedactingFormatter(list(PII_FIELDS)))
+    logger.addHandler(stream_handler)
+
+    return logger
+
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    """Returns a connector to a MySQL database."""
+    username = environ.get("PERSONAL_DATA_DB_USERNAME", "root")
+    password = environ.get("PERSONAL_DATA_DB_PASSWORD", "")
+    host = environ.get("PERSONAL_DATA_DB_HOST", "localhost")
+    db_name = environ.get("PERSONAL_DATA_DB_NAME")
+
+    return mysql.connector.connect(
+        user=username,
+        password=password,
+        host=host,
+        database=db_name
+    )
+
+
 class RedactingFormatter(logging.Formatter):
-    """ Redacting Formatter class """
+    """Redacting Formatter class."""
 
     REDACTION = "***"
-    FORMAT = ("[HOLBERTON] %(name)s %(levelname)s "
-              "%(asctime)-15s: %(message)s")
+    FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
     SEPARATOR = ";"
 
     def __init__(self, fields: List[str]):
@@ -31,7 +66,7 @@ class RedactingFormatter(logging.Formatter):
         self.fields = fields
 
     def format(self, record: logging.LogRecord) -> str:
-        """ Filter values in incoming log records using filter_datum """
+        """Filters values in incoming log records using filter_datum."""
         record.msg = filter_datum(
             self.fields, self.REDACTION,
             record.getMessage(), self.SEPARATOR
@@ -39,33 +74,22 @@ class RedactingFormatter(logging.Formatter):
         return super().format(record)
 
 
+def main():
+    """Main function to retrieve and log user data DB securely."""
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM users;")
+    field_names = [i[0] for i in cursor.description]
+
+    logger = get_logger()
+
+    for row in cursor:
+        str_row = ''.join(f'{f}={str(r)}; ' for f, r in zip(field_names, row))
+        logger.info(str_row.strip())
+
+    cursor.close()
+    db.close()
+
+
 if __name__ == '__main__':
-    # Example usage
-    message = (
-        "name=Bob;email=bob@dylan.com;ssn=000-123-0000;password=bobby2019;"
-    )
-    log_record = logging.LogRecord(
-        "my_logger", logging.INFO, None, None, message, None, None
-    )
-    formatter = RedactingFormatter(fields=("email", "ssn", "password"))
-    print(formatter.format(log_record))
-
-
-# Definition of important PII fields
-PII_FIELDS = ("name", "email", "phone", "ssn", "password")
-
-
-def get_logger() -> logging.Logger:
-    """Create and return a logger configured to obfuscate PII."""
-    # Create the logger
-    logger = logging.getLogger("user_data")
-    logger.setLevel(logging.INFO)
-    logger.propagate = False
-
-    # Configure StreamHandler with RedactingFormatter
-    stream_handler = logging.StreamHandler()
-    formatter = RedactingFormatter(fields=PII_FIELDS)
-    stream_handler.setFormatter(formatter)
-    logger.addHandler(stream_handler)
-
-    return logger
+    main()

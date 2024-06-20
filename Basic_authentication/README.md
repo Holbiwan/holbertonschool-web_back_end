@@ -1,7 +1,5 @@
 # Basic authentication📌
 
-![Rest Api basic authentication](https://zupimages.net/up/24/25/wx7v.png)
-
 ### Topics covered in this Repository 🚀
 
 * What authentication means
@@ -9,6 +7,8 @@
 * How to encode a string in Base64
 * What Basic authentication means
 * How to send the Authorization header
+
+![Rest Api basic authentication](https://zupimages.net/up/24/25/wx7v.png)
 
 # Implement a Basic Authentication on a simple API.
 

@@ -9,7 +9,6 @@ from typing import TypeVar
 
 class BasicAuth(Auth):
     """ Basic Authentication Class """
-
     def extract_base64_authorization_header(self,
                                             authorization_header: str) -> str:
         """ Extract Base 64 Authorization Header """
@@ -66,7 +65,8 @@ class BasicAuth(Auth):
 
         return credentials[0], credentials[1]
 
-    def user_object_from_credentials(self, user_email: str,
+    def user_object_from_credentials(self,
+                                     user_email: str,
                                      user_pwd: str) -> TypeVar('User'):
         """
         Returns the User instance based on his

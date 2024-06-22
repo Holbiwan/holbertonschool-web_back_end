@@ -24,7 +24,5 @@
 - A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
 
 
-![Rest Api basic authentication](https://zupimages.net/up/24/25/hy1m.png)
-
-### Author
+## Author
 **Sabrina PAPEAU** - [Github](https://github.com/Holbiwan)

@@ -1,1 +1,11 @@
 __pycache__
+
+.mypy_cache/
+
+.env
+.venv
+env/
+venv/
+ENV/
+
+test_python.py

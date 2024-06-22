@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """ Cookie server
 """
 from flask import Flask, request

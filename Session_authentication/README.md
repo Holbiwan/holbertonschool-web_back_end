@@ -1,4 +1,4 @@
-﻿# Session authentication📌
+﻿# Session authentication
 
 ## Topics covered in this Repository 🚀 : 
 

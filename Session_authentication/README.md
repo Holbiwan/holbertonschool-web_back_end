@@ -942,3 +942,4 @@ bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/users/me" --cookie "_my_session_id
 }
 bob@dylan:~$
 ```
+Author  :  * **Sabrina PAPEAU** - [Github](https://github.com/Holbiwan)

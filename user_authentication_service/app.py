@@ -1,110 +1,92 @@
 #!/usr/bin/env python3
-""" Authentication Module """
+"""Flask app"""
 
-import bcrypt
-from db import DB
-from sqlalchemy.orm.exc import NoResultFound
-from typing import Union
-from user import User
-from uuid import uuid4
+from flask import Flask, jsonify, request, abort, redirect
+from auth import Auth
 
-
-def _hash_password(password: str) -> str:
-    """ Returns a salted hash of the input password """
-    hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
-    return hashed.decode('utf-8')  # Convert bytes to str
+app = Flask(__name__)
+AUTH = Auth()
 
 
-def _generate_uuid() -> str:
-    """Returns a string representation of a new UUID"""
-    return str(uuid4())
+@app.route('/', methods=["GET"])
+def bienvenue():
+    """bienvenue method"""
+    return jsonify({"message": "Bienvenue"}), 200
 
 
-class Auth:
-    """Auth class to interact with the authentication database."""
+@app.route("/users", methods=["POST"])
+def register():
+    """register end-point"""
+    email = request.form.get("email")
+    password = request.form.get("password")
+    try:
+        user = AUTH.register_user(email, password)
+        return jsonify({"email": email, "message": "user created"})
+    except ValueError:
+        return jsonify({"message": "email already registered"}), 400
 
-    def __init__(self):
-        self._db = DB()
 
-    def register_user(self, email: str, password: str) -> User:
-        """ Registers a user in the database
-        Returns: User Object
-        """
-        try:
-            user = self._db.find_user_by(email=email)
-        except NoResultFound:
-            hashed_password = _hash_password(password)
-            user = self._db.add_user(email, hashed_password)
-            return user
-        else:
-            raise ValueError(f'User {email} already exists')
+@app.route("/sessions", methods=["POST"])
+def login():
+    """login method"""
+    email = request.form.get("email")
+    password = request.form.get("password")
+    valid = AUTH.valid_login(email, password)
+    if valid is False:
+        abort(401)
+    session_id = AUTH.create_session(email)
+    response = jsonify({"email": email, "message": "logged in"})
+    response.set_cookie("session_id", session_id)
+    return response
 
-    def valid_login(self, email: str, password: str) -> bool:
-        """If password is valid returns true, else, false"""
-        try:
-            user = self._db.find_user_by(email=email)
-        except NoResultFound:
-            return False
 
-        if bcrypt.checkpw(password.encode(), user.hashed_password.encode()):
-            return True
+@app.route("/sessions", methods=["DELETE"])
+def logout():
+    """logout method"""
+    session_id = request.cookies.get("session_id")
+    user = AUTH.get_user_from_session_id(session_id)
+    if user:
+        AUTH.destroy_session(user.id)
+        return redirect('/')
+    else:
+        abort(403)
 
-        return False
 
-    def create_session(self, email: str) -> str:
-        """Creates a session ID for the user and returns it"""
-        try:
-            user = self._db.find_user_by(email=email)
-        except NoResultFound:
-            return None
+@app.route("/profile", methods=["GET"])
+def profile():
+    """profile method"""
+    try:
+        session_id = request.cookies.get("session_id")
+        user = AUTH.get_user_from_session_id(session_id)
+        return jsonify({"email": user.email}), 200
+    except Exception:
+        abort(403)
 
-        session_id = _generate_uuid()
-        self._db.update_user(user.id, session_id=session_id)
 
-        return session_id
+@app.route("/reset_password", methods=["POST"])
+def get_reset_password_token():
+    """get_reset_password_token method"""
+    email = request.form.get("email")
+    session_id = AUTH.create_session(email)
+    if session_id:
+        token = AUTH.get_reset_password_token(email)
+        return jsonify({"email": email, "reset_token": token})
+    else:
+        abort(403)
 
-    def get_user_from_session_id(self, session_id: str) -> Union[User, None]:
-        """Returns a User object based on a session ID or None"""
-        if session_id is None:
-            return None
 
-        try:
-            user = self._db.find_user_by(session_id=session_id)
-        except NoResultFound:
-            return None
+@app.route("/reset_password", methods=["PUT"])
+def update_password():
+    """update_password method"""
+    email = request.form.get("email")
+    reset_token = request.form.get("reset_token")
+    new_password = request.form.get("new_password")
+    try:
+        AUTH.update_password(reset_token, new_password)
+        return jsonify({"email": email, "message": "Password updated"}), 200
+    except ValueError:
+        abort(403)
 
-        return user
 
-    def destroy_session(self, user_id: int) -> None:
-        """Updates the corresponding user's session ID to None"""
-        try:
-            user = self._db.find_user_by(id=user_id)
-        except NoResultFound:
-            return None
-
-        self._db.update_user(user.id, session_id=None)
-
-    def get_reset_password_token(self, email: str) -> str:
-        """Generates a reset password token if user exists"""
-        try:
-            user = self._db.find_user_by(email=email)
-        except NoResultFound:
-            raise ValueError
-
-        reset_token = _generate_uuid()
-        self._db.update_user(user.id, reset_token=reset_token)
-
-        return reset_token
-
-    def update_password(self, reset_token: str, password: str) -> None:
-        """Uses reset token to validate and update user's password"""
-        if reset_token is None or password is None:
-            return None
-
-        try:
-            user = self._db.find_user_by(reset_token=reset_token)
-        except NoResultFound:
-            raise ValueError
-
-        hashed_password = _hash_password(password)
-        self._db.update_user(user.id, hashed_password=hashed_password, reset_token=None)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port="5000")

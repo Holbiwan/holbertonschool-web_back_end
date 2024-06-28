@@ -26,7 +26,7 @@ class DB:
 
     @property
     def _session(self) -> Session:
-        """Memoized session object
+        """Memo session object
         """
         if self.__session is None:
             DBSession = sessionmaker(bind=self._engine)

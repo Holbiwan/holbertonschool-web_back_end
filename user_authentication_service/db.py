@@ -8,17 +8,14 @@ from sqlalchemy.orm.session import Session
 from sqlalchemy.exc import InvalidRequestError
 from sqlalchemy.orm.exc import NoResultFound
 
-from user import Base
-from user import User
+from user import Base, User
 
 
 class DB:
-    """DB class
-    """
+    """DB class to interact with the database."""
 
     def __init__(self) -> None:
-        """Initialize a new DB instance
-        """
+        """Initialize a new DB instance."""
         self._engine = create_engine("sqlite:///a.db", echo=False)
         Base.metadata.drop_all(self._engine)
         Base.metadata.create_all(self._engine)
@@ -26,37 +23,31 @@ class DB:
 
     @property
     def _session(self) -> Session:
-        """Memo session object
-        """
+        """Create and return a session object if it doesn't exist."""
         if self.__session is None:
             DBSession = sessionmaker(bind=self._engine)
             self.__session = DBSession()
         return self.__session
 
     def add_user(self, email: str, hashed_password: str) -> User:
-        """add_user method that returns a user object"""
+        """Add a new user to the database and return the user object."""
         user = User(email=email, hashed_password=hashed_password)
         self._session.add(user)
         self._session.commit()
         return user
 
     def find_user_by(self, **kwargs) -> User:
-        """find_user_by method that return a user object based on the email"""
-        if kwargs is None:
-            raise InvalidRequestError
-        user = self._session.query(User).filter_by(**kwargs)
-        for i in user:
-            if i is not None:
-                return i
-        raise NoResultFound
+        """Find and return a user based on the provided filters."""
+        if not kwargs:
+            raise InvalidRequestError("No arguments provided.")
+        user = self._session.query(User).filter_by(**kwargs).first()
+        if user:
+            return user
+        raise NoResultFound("No user found with the given parameters.")
 
     def update_user(self, user_id: int, **kwargs) -> None:
-        """update_user method that update the user’s attributes
-        as passed in the method’s arguments then
-        commit changes to the database."""
-        try:
-            user = self.find_user_by(id=user_id)
-            self._session.execute(update(User).values(kwargs))
-            self._session.commit()
-        except Exception:
-            raise ValueError
+        """Update user attributes and commit changes to the database."""
+        user = self.find_user_by(id=user_id)
+        for key, value in kwargs.items():
+            setattr(user, key, value)
+        self._session.commit()

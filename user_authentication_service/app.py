@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Flask app"""
+"""Flask application for authentication services."""
 
 from flask import Flask, jsonify, request, abort, redirect
 from auth import Auth
@@ -9,14 +9,14 @@ AUTH = Auth()
 
 
 @app.route('/', methods=["GET"])
-def bienvenue():
-    """bienvenue method"""
+def welcome():
+    """Welcome endpoint."""
     return jsonify({"message": "Bienvenue"}), 200
 
 
 @app.route("/users", methods=["POST"])
 def register():
-    """register end-point"""
+    """Register endpoint to create a new user."""
     email = request.form.get("email")
     password = request.form.get("password")
     try:
@@ -28,11 +28,11 @@ def register():
 
 @app.route("/sessions", methods=["POST"])
 def login():
-    """login method"""
+    """Login endpoint to create a new session."""
     email = request.form.get("email")
     password = request.form.get("password")
     valid = AUTH.valid_login(email, password)
-    if valid is False:
+    if not valid:
         abort(401)
     session_id = AUTH.create_session(email)
     response = jsonify({"email": email, "message": "logged in"})
@@ -42,7 +42,7 @@ def login():
 
 @app.route("/sessions", methods=["DELETE"])
 def logout():
-    """logout method"""
+    """Logout endpoint to destroy a session."""
     session_id = request.cookies.get("session_id")
     user = AUTH.get_user_from_session_id(session_id)
     if user:
@@ -54,30 +54,29 @@ def logout():
 
 @app.route("/profile", methods=["GET"])
 def profile():
-    """profile method"""
-    try:
-        session_id = request.cookies.get("session_id")
-        user = AUTH.get_user_from_session_id(session_id)
+    """Profile endpoint to retrieve user profile."""
+    session_id = request.cookies.get("session_id")
+    user = AUTH.get_user_from_session_id(session_id)
+    if user:
         return jsonify({"email": user.email}), 200
-    except Exception:
+    else:
         abort(403)
 
 
 @app.route("/reset_password", methods=["POST"])
 def get_reset_password_token():
-    """get_reset_password_token method"""
+    """Endpoint to get a reset password token."""
     email = request.form.get("email")
-    session_id = AUTH.create_session(email)
-    if session_id:
+    try:
         token = AUTH.get_reset_password_token(email)
         return jsonify({"email": email, "reset_token": token})
-    else:
+    except ValueError:
         abort(403)
 
 
 @app.route("/reset_password", methods=["PUT"])
 def update_password():
-    """update_password method"""
+    """Endpoint to update the user password."""
     email = request.form.get("email")
     reset_token = request.form.get("reset_token")
     new_password = request.form.get("new_password")
@@ -89,4 +88,5 @@ def update_password():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="5000")
+    app.run(host="0.0.0.0", port=5000)
+   

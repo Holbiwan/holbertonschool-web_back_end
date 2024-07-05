@@ -15,22 +15,21 @@ class Config(object):
 
 app.config.from_object(Config)
 
-
 babel = Babel(app)
 
 
 @app.route('/')
 def index():
-
     """Returning our html page"""
     return render_template('2-index.html')
 
 
-@babel.localeselector
 def get_locale():
     """Getting locale from request.accept_languages"""
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
+
+babel.locale_selector_func = get_locale
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")

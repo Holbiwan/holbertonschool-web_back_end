@@ -78,6 +78,7 @@ class TestGithubOrgClient(unittest.TestCase):
 
         self.assertEqual(url, expected_url)
 
+
 @parameterized_class(
     ("org_payload", "repos_payload", "expected_repos", "apache2_repos"),
     TEST_PAYLOAD
@@ -101,6 +102,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
     def test_public_repos_with_license(self):
         """testing public with license"""
+
 
 if __name__ == '__main__':
     unittest.main()

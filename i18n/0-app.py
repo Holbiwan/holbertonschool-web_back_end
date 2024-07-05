@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
-
-""" Setup a basic Flask app """
+""" Basic Flask app Module
+"""
 
 from flask import Flask, render_template
 
-app = Flask(__name__, template_folder='templates')
+
+app = Flask(__name__)
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
-def hello_world() -> str:
-    """Renders a Basic Template for Babel Implementation"""
+def welcome() -> str:
+    """Endpoint returning Hello world.
+    """
     return render_template("0-index.html")
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=5000)

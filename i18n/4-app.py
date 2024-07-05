@@ -1,42 +1,43 @@
 #!/usr/bin/env python3
+""" Basic Flask app Module
 """
-implement a way to force a particular locale.
-"""
-from flask import Flask, request, render_template
-from flask_babel import Babel, gettext
+
+from flask import Flask, render_template, request
+from flask_babel import Babel
 
 
 app = Flask(__name__)
 babel = Babel(app)
 
 
-class Config(object):
-    """Class to configure available languages in the app"""
+class Config:
+    """ Configuration class.
+    """
     LANGUAGES = ["en", "fr"]
-    BABEL_DEFAULT_LOCALE = "en"
-    BABEL_DEFAULT_TIMEZONE = "UTC"
+    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
 app.config.from_object(Config)
 
 
-@babel.localeselector
-def get_locale():
-    """Getting locale from request.accept_languages"""
-    local_lang = request.args.get("locale")
-    supp_lang = app.config["LANGUAGES"]
-    if local_lang in supp_lang:
-        return local_lang
-    else:
-        return request.accept_languages.best_match(app.config["LANGUAGES"])
-
-
-@app.route("/")
-def hello_world():
-    """Returning our HTML page"""
+@app.route('/', methods=['GET'], strict_slashes=False)
+def welcome() -> str:
+    """Endpoint returning Hello world.
+    """
     return render_template("4-index.html")
 
 
-def gettext(text):
-    """Translate text to the currently selected locale."""
-    return text
+@babel.localeselector
+def get_locale() -> str:
+    """Select the best match language."""
+
+    requested_locale = request.args.get('locale')
+    if requested_locale in app.config['LANGUAGES']:
+        return requested_locale
+
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)

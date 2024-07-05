@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-''' Flask app '''
+""" Parametrize templates with Flask-Babel app """
 
 from flask import Flask, request, render_template
 from flask_babel import Babel, gettext
@@ -9,7 +9,6 @@ babel = Babel(app)
 
 
 class Config:
-    ''' App config '''
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
@@ -20,13 +19,11 @@ app.config.from_object(Config)
 
 @babel.localeselector
 def get_locale():
-    ''' return best languages '''
     return request.accept_languages.best_match(Config.LANGUAGES)
 
 
-@app.route("/", methods=["GET"], strict_slashes=False)
-def hello_world():
-    ''' return the template '''
+@app.route('/')
+def index():
     return render_template('3-index.html')
 
 

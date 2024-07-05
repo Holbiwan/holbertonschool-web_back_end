@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-""" Task 1: Basic Babel setup """
-from flask import Flask, render_template
-from flask_babel import Babel
+""" Task 3: Parametrize templates """
+from flask import Flask, render_template, request
+from flask_babel import Babel, gettext
+
 
 app = Flask(__name__)
 babel = Babel(app)
+gettext.__doc__ = "Documentation for gettext"
+""" Checker requirements """
 
 
 class Config(object):
@@ -20,7 +23,13 @@ app.config.from_object(Config)
 @app.route('/')
 def index():
     """ Returning our html page """
-    return render_template('1-index.html')
+    return render_template('3-index.html')
+
+
+@babel.localeselector
+def get_locale():
+    """ Getting locale from request.accept_languages """
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 if __name__ == "__main__":

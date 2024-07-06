@@ -17,15 +17,15 @@
 
 ### Task
 
-**0. Basic Flask app**
+### 0. Basic Flask app
 
-File: [0-app.py](0-app.py/) - [templates/0-index.html](templates/0-index.html/)
+**Files:** [0-app.py](0-app.py/), [templates/0-index.html](templates/0-index.html/)
 
-First you will setup a basic Flask app in 0-app.py. Create a single / route and an index.html template that simply outputs “Welcome to Holberton” as page title (<title>) and “Hello world” as header (<h1>).
+Set up a basic Flask app in `0-app.py`. Create a single `/` route and an `index.html` template that outputs "Welcome to Holberton" as the page title (`<title>`) and "Hello world" as the header (`<h1>`).
 
-**1. Basic Babel setup**
+### 1. Basic Babel setup
 
-File: [1-app.py](1-app.py/) - [templates/1-index.html](templates/1-index.html/)
+**Files:** [1-app.py](1-app.py/), [templates/1-index.html](templates/1-index.html/)
 
 ```sh
 Install the Babel Flask extension:
@@ -182,10 +182,3 @@ Use the following translations
 | -- | -- | -- |
 | current_time_is | "The current time is %(current_time)s."	 | "Nous sommes le %(current_time)s." |
 
-Displaying the time in French looks like this:
-
-![](images/pic5.png)
-
-Displaying the time in English looks like this:
-
-![](images/pic6.png)

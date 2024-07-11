@@ -1,6 +1,6 @@
 # Holberton School Web Back End
 
-![HWBE](https://zupimages.net/up/24/28/66pu.png)
+![HWBE](https://zupimages.net/up/24/28/5ck8.png)
 
 Welcome to the **Holberton School Web Back End** repository!  
 This project houses a variety of modules and exercises pivotal for mastering back-end development,  

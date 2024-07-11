@@ -25,6 +25,7 @@ This project houses a variety of modules and exercises pivotal for mastering bac
 - Python Variable Annotations
 - User Authentication Services
 
+
 ### Basic Authentication
 
 This section includes exercises and practical implementations of Basic Authentication, utilizing a straightforward HTTP authentication scheme where credentials are sent alongside HTTP requests.
@@ -89,17 +90,15 @@ Learn about variable annotations in Python, which provide a means to add type hi
 
 Develop secure user authentication systems that safeguard application access and enhance user management.
 
----
-
 **Navigating This Repository**
 
 Use `Control + Shift + m` to toggle the tab key moving focus within this page, or use `ESC` then `Tab` to navigate to the next interactive element.
 
-**Contributing**
+### **Contributing**
 
 Feel free to forking and submitting a pull request. I'll appreciate your input!
 
-**License**
+### **License**
 
 This project is licensed under the MIT License
 

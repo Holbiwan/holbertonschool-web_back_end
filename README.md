@@ -97,7 +97,7 @@ Use `Control + Shift + m` to toggle the tab key moving focus within this page, o
 
 **Contributing**
 
-Feel free to contribute to this repository by forking and submitting a pull request. We appreciate your input!
+Feel free to forking and submitting a pull request. I'll appreciate your input!
 
 **License**
 

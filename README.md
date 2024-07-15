@@ -105,3 +105,9 @@ This project is licensed under the MIT License
 ---
 
 ### Author  :   **Sabrina PAPEAU** - [Github](https://github.com/Holbiwan)
+
+> :octocat: [Github](https://github.com/Holbiwan)
+
+> [X](https://twitter.com/@Holbiwan_Place)
+
+> :blue_book: [Linkedin](https://www.linkedin.com/in/sabrina-p006566185)

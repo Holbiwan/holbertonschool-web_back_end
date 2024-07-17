@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Module for testing client """
+""" Module for testing client """
 
 import unittest
 from parameterized import parameterized, parameterized_class

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Make_multiplier: float multiplier -> Callable[[float], float]"""
+""" Make_multiplier: float multiplier -> Callable[[float], float] """
 
 from typing import Callable
 

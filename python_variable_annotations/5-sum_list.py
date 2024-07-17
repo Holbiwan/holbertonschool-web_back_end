@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sum_list function takes a list of floats, returns their sum as a float"""
+""" Sum_list function takes a list of floats, returns their sum as a float """
 
 from typing import List
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""element_length: Iterable 'lst' -> List[Tuple[Sequence, int]]"""
+""" Element_length: Iterable 'lst' -> List[Tuple[Sequence, int]] """
 
 from typing import Iterable, Sequence, List, Tuple
 

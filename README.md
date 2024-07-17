@@ -24,6 +24,7 @@ This project houses a variety of modules and exercises pivotal for mastering bac
 - Python Asynchronous Functions
 - Python Variable Annotations
 - User Authentication Services
+- unittests_in_js
 
 
 ### Basic Authentication
@@ -89,6 +90,12 @@ Learn about variable annotations in Python, which provide a means to add type hi
 ### User Authentication Service
 
 Develop secure user authentication systems that safeguard application access and enhance user management.
+
+
+### Unittests_in_js
+
+How to write integration tests with a small node server
+Unit testing with Async functions
 
 **Navigating This Repository**
 

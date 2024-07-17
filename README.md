@@ -1,122 +1,86 @@
-# Holberton School Web Back End
-
-![HWBE](https://zupimages.net/up/24/28/5ck8.png)
-
-Welcome to the **Holberton School Web Back End** repository!  
-This project houses a variety of modules and exercises pivotal for mastering back-end development,  
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=Holbiwan&label=Profile%20views&color=0e75b6&style=flat" alt="Holbiwan" /> </p>
 
 
-## Table of Contents
-
-- Basic Authentication
-- ES6 Basics
-- ES6 Classes
-- ES6 Data Manipulation
-- ES6 Promises
-- NoSQL
-- Session Authentication
-- Testing: Unit and Integration
-- Caching Strategie
-- Internationalization (I18n)
-- Data Pagination
-- Personal Data Handling
-- Python Asynchronous Comprehension
-- Python Asynchronous Functions
-- Python Variable Annotations
-- User Authentication Services
-- unittests_in_js
+![Holbiwan](https://zupimages.net/up/24/29/uiqm.png)
 
 
-### - Basic Authentication
+[![TypingSVG](https://readme-typing-svg.demolab.com?lines=Hey!+You+are+welcome+to+my+profile;My+name+is+Sabrina+aka+HOLBIWAN;I+am+passionate+about+coding;)](https://git.io/typing-svg)
 
-This section includes exercises and practical implementations of Basic Authentication, utilizing a straightforward HTTP authentication scheme where credentials are sent alongside HTTP requests.
+# Hi, I am Sabrina 👋
 
-### - ES6 Basic
+## I am a Software Engineer Student in Full Stack Specialization 🚀
 
-Explore the fundamentals of ECMAScript 6, including the newest features and syntax that enhance JavaScript programming.
+- 🔭 **I’m currently working on :** Improving my coding skills through practical projects.
+- 🌱 **I learn by doing...** Embracing hands-on projects and challenges.
+- 📫 **How to reach me:** [![GitHub HOLBIWAN](https://img.shields.io/badge/-HOLBIWAN-black?style=flat-square&logo=github)](https://github.com/Holbiwan)
 
-### - ES6 Classes
+*************************************************************************************************************  
+### Languages & Tools 🛠️
 
-Dive into ES6 classes, a modern way to define consistent objects and implement inheritance in JavaScript.
+<p align="center">
+<a href="https://github.com/Holbiwan">
 
-### - ES6 Data Manipulation
-
-Learn about advanced data manipulation techniques in ES6, focusing on efficient methods to handle arrays and other data structures.
-
-### - ES6 Promise
-
-Investigate ES6 Promises, designed to simplify asynchronous programming by providing a mechanism to handle future events.
-
-### - NoSQL
-
-Study the use of NoSQL databases, emphasizing flexible schema design, document storage, and key-value store methodologies.
-
-### - Session Authentication
-
-Understand session-based authentication systems where user sessions are managed on the server to maintain authentication states.
-
-### - Unittests and Integration Tests
-
-Ensure code reliability and robustness through comprehensive unit and integration testing methodologies.
-
-### - Caching
-
-Implement caching mechanisms to significantly improve application performance by storing and reusing frequently accessed data.
-
-### - I18n
-
-Focus on internationalization (I18n), preparing software for easy adaptation to different languages and regional specifics without structural changes.
-
-### - Pagination
-
-Handle large datasets effectively with pagination techniques that help in managing and displaying extensive data more efficiently.
-
-### - Personal Data
-
-Address the secure handling of personal data, ensuring compliance with strict data protection regulations.
-
-### - Python Async Comprehension
-
-Experiment with asynchronous comprehensions in Python, enabling conc ise asynchronous loops.
-
-### - Python Async Function
-
-Explore Python's asynchronous functions for writing non-blocking code, which is essential for high-performance applications.
-
-### - Python Variable Annotations
-
-Learn about variable annotations in Python, which provide a means to add type hints that enhance code clarity and type-checking.
-
-### - User Authentication Service
-
-Develop secure user authentication systems that safeguard application access and enhance user management.
-
-### - Unittests_in_js
-
-How to write integration tests with a small node server
-Unit testing with Async functions
-
----
+<p align="center">
+  
+<div align="center">
+    <img src="https://skillicons.dev/icons?i=python,c,html,css,js,react,nodejs,django,mysql,git,github,vscode,bootstrap,flask,sqlite" /><br>
+</div>
 
 
-**Navigating This Repository**
+### Connect with me 🌐
 
-Use `Control + Shift + m` to toggle the tab key moving focus within this page, or use `ESC` then `Tab` to navigate to the next interactive element.
+<p align="center">
+  <a href="https://instagram.com/holbiwan.saby">
+    <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"/>
+  </a>
+  <a href="https://www.linkedin.com/in/sabrina-p006566185/">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
+  </a>
+</p>
 
-### **Contributing**
 
-Feel free to forking and submitting a pull request. I'll appreciate your input!
+### My GitHub Stats 📊
 
-### **License**
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=Holbiwan&show_icons=true&theme=radical" alt="Holbiwan's GitHub Stats" />
+</p>
 
-This project is licensed under the MIT License
+<p align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Holbiwan&" alt="Holbiwan's GitHub Streak" />
+</p>
 
----
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Holbiwan&layout=compact" alt="Top Languages" />
+</p>
 
-### Author  :   **Sabrina PAPEAU** - [Github](https://github.com/Holbiwan)
+<!-- Footer -->
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0a1931&height=120&section=footer"/>
+</div>
 
-> :octocat: [Github](https://github.com/Holbiwan)
 
-> [X](https://twitter.com/@Holbiwan_Place)
+<!-- THANKS FOR VISITING -->
 
-> :blue_book: [Linkedin](https://www.linkedin.com/in/sabrina-p006566185)
+<div align="center">
+  <a href="#">
+    <img width=100% align="center" src="https://capsule-render.vercel.app/api?type=rect&color=151923&height=2&section=header&%20render">
+  </a>
+</div>
+
+<br>
+
+
+
+<br>
+
+<div align="center">
+  <a href="https://git.io/typing-svg">
+    <img src="https://readme-typing-svg.demolab.com?font=Press+Start+2P&duration=1&pause=99999&color=FA3E3E&center=true&vCenter=true&repeat=false&width=700&height=100&lines=Thanks+for+visiting%2C+see+ya!" alt="TypingGoodbye-SVG" title="Goodbye and come again! ;)"/>
+  </a>
+</div>
+
+<div align="center">
+  <a href="#">
+    <img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=fa3e3e&height=120&section=footer"/>
+  </a>
+</div>

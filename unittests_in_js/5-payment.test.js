@@ -1,4 +1,3 @@
-/* eslint-disable */
 const { expect } = require('chai');
 const sinon = require('sinon');
 const sendPaymentRequestToApi = require('./5-payment');
@@ -11,6 +10,7 @@ describe('sendPaymentRequestToApi', function () {
   });
 
   afterEach(function () {
+    // runs after each test in this block
     consoleSpy.restore();
   });
 

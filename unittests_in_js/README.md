@@ -23,7 +23,7 @@
 * [x] 7. Skip
 * [x] 8. Basic Integration testing
 * [x] 9. Regex integration testing
-* [x ] 10. Deep equality & Post integration testing
+* [x] 10. Deep equality & Post integration testing
 
 ## Author
 **Sabrina PAPEAU** - [Github](https://github.com/Holbiwan)

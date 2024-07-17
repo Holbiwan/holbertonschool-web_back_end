@@ -1,20 +1,20 @@
 #!/usr/bin/python3
-"""MRU Caching"""
+""" MRU Caching """
 from collections import OrderedDict
 from base_caching import BaseCaching
 
 
 class MRUCache(BaseCaching):
-    """MRUCache that inherits from
-    BaseCaching and is a caching system:"""
+    """ MRUCache that inherits from
+    BaseCaching and is a caching system: """
 
     def __init__(self):
-        """Initialize the class"""
+        """ Initialize the class """
         super().__init__()
         self.cache_data = OrderedDict()
 
     def put(self, key, item):
-        """Add an item to the cache"""
+        """ Add an item to the cache """
         if key is not None and item is not None:
             if key in self.cache_data:
                 # Remove the existing item so it can be added to the end
@@ -26,7 +26,7 @@ class MRUCache(BaseCaching):
             self.cache_data[key] = item
 
     def get(self, key):
-        """Get an item by key"""
+        """ Get an item by key """
         if key is not None and key in self.cache_data:
             # Move the accessed item to the end to mark it as recently used
             value = self.cache_data.pop(key)

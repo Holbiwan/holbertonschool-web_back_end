@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""LIFO Caching"""
+""" LIFO Caching """
 
 from base_caching import BaseCaching
 
 
 class LIFOCache(BaseCaching):
-    """LIFO Caching"""
+    """ LIFO Caching """
 
     def __init__(self):
-        """Initialize"""
+        """ Initialize """
         super().__init__()
         self.last_key = None
 

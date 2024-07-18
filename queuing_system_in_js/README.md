@@ -1,8 +1,8 @@
 # Queuing System in JS
 
-## Learning Objectives
+![Queuing js](https://zupimages.net/up/24/29/66lt.png)
 
-At the end of this project, you are expected to be able to explain to anyone, `without the help of Google`:
+## Topics covered in this repository :
 
 - How to run a Redis server on your machine
 - How to run simple operations with the Redis client
@@ -12,3 +12,31 @@ At the end of this project, you are expected to be able to explain to anyone, `w
 - How to use Kue as a queue system
 - How to build a basic Express app interacting with a Redis server
 - How to the build a basic Express app interacting with a Redis server and queue
+
+
+## Requirements
+
+- All code will be compiled/interpreted on Ubuntu 18.04, Node 12.x, and Redis 5.0.7
+- All files should end with a new line
+- A `README.md` file, at the root of the folder of the project, is mandatory
+- The code should use the `js` extension
+
+
+## Required Files for the Project
+
+### `package.json`
+
+Click to show/hide file contents
+
+### `.babelrc`
+
+Click to show/hide file contents
+
+### and…
+
+Run `$ npm install` when you have the `package.json`
+
+
+## Author  
+**Sabrina PAPEAU** - [Github](https://github.com/Holbiwan)
+

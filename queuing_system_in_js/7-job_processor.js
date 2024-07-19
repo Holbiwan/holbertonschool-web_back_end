@@ -7,18 +7,22 @@ const blacklisted = ['4153518780', '4153518781'];
 
 const sendNotification = (phoneNumber, message, job, done) => {
   const total = 100;
-  job.progress(0, total);
+  job.progress(0, total, () => {
+    if (blacklisted.includes(phoneNumber)) {
+      const error = new Error(`Phone number ${phoneNumber} is blacklisted`);
+      console.error(error.message);
+      done(error);
+      return;
+    }
 
-  if (blacklisted.includes(phoneNumber)) {
-    done(Error(`Phone number ${phoneNumber} is blacklisted`));
-    return;
-  }
-
-  job.progress(50, total);
-  console.log(
-    `Sending notification to ${phoneNumber}, with message: ${message}`
-  );
-  done();
+    console.log(`Sending notification to ${phoneNumber}, with message: ${message}`);
+    job.progress(50, total, () => {
+      // Simulate successful notification sending
+      job.progress(100, total, () => {
+        done(); // Signal successful completion of the job
+      });
+    });
+  });
 };
 
 queue.process(queueName, 2, (job, done) => {

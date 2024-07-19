@@ -30,27 +30,28 @@ const listProducts = [
 ];
 
 function getItemById(id) {
-  return listProducts.filter((item) => item.itemId === id)[0];
+  return listProducts.find((item) => item.itemId === id);
 }
 
 const client = redis.createClient();
 const getAsync = promisify(client.get).bind(client);
+const setAsync = promisify(client.set).bind(client);
 
 client.on('error', (error) => {
-  console.log(`Redis client not connected to the server: ${error.message}`);
+  console.error(`Redis client not connected to the server: ${error.message}`);
 });
 
 client.on('connect', () => {
   console.log('Redis client connected to the server');
 });
 
-function reserveStockById(itemId, stock) {
-  client.set(`item.${itemId}`, stock);
+async function reserveStockById(itemId, stock) {
+  await setAsync(`item.${itemId}`, stock);
 }
 
 async function getCurrentReservedStockById(itemId) {
   const stock = await getAsync(`item.${itemId}`);
-  return stock;
+  return stock ? parseInt(stock, 10) : null;
 }
 
 const app = express();
@@ -67,42 +68,39 @@ app.get('/list_products', (req, res) => {
 });
 
 app.get('/list_products/:itemId', async (req, res) => {
-  const itemId = Number(req.params.itemId);
+  const itemId = parseInt(req.params.itemId, 10);
   const item = getItemById(itemId);
 
   if (!item) {
-    res.json(notFound);
+    res.status(404).json(notFound);
     return;
   }
 
   const currentStock = await getCurrentReservedStockById(itemId);
-  const stock =
-    currentStock !== null ? currentStock : item.initialAvailableQuantity;
+  item.currentQuantity = currentStock ?? item.initialAvailableQuantity;
 
-  item.currentQuantity = stock;
   res.json(item);
 });
 
 app.get('/reserve_product/:itemId', async (req, res) => {
-  const itemId = Number(req.params.itemId);
+  const itemId = parseInt(req.params.itemId, 10);
   const item = getItemById(itemId);
   const noStock = { status: 'Not enough stock available', itemId };
   const reservationConfirmed = { status: 'Reservation confirmed', itemId };
 
   if (!item) {
-    res.json(notFound);
+    res.status(404).json(notFound);
     return;
   }
 
   let currentStock = await getCurrentReservedStockById(itemId);
-  if (currentStock === null) currentStock = item.initialAvailableQuantity;
+  currentStock = currentStock ?? item.initialAvailableQuantity;
 
   if (currentStock <= 0) {
-    res.json(noStock);
+    res.status(400).json(noStock);
     return;
   }
 
-  reserveStockById(itemId, Number(currentStock) - 1);
-
+  await reserveStockById(itemId, currentStock - 1);
   res.json(reservationConfirmed);
 });

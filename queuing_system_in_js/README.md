@@ -36,7 +36,7 @@ Click to show/hide file contents
 Run `$ npm install` when you have the `package.json`
 
 
-## Tasks
+# Tasks
 
 ### [0. Install a redis instance](./README.md)
 * Download, extract, and compile the latest stable Redis version (higher than 5.0.7 - https://redis.io/download):

@@ -1,6 +1,6 @@
 # Queuing System in JS
 
-![Queuing js](https://zupimages.net/up/24/29/66lt.png)
+![Queuing js](https://zupimages.net/up/24/29/qgpn.png)
 
 ## Topics covered in this repository :
 
@@ -39,4 +39,3 @@ Run `$ npm install` when you have the `package.json`
 
 ## Author  
 **Sabrina PAPEAU** - [Github](https://github.com/Holbiwan)
-

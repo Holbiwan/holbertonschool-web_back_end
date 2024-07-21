@@ -1,7 +1,7 @@
 
 ![Queuing js](https://zupimages.net/up/24/29/qgpn.png)
 
-# Topics covered in this repository :
+## Topics covered in this repository :
 
 - How to run a Redis server on your machine
 - How to run simple operations with the Redis client
@@ -13,7 +13,7 @@
 - How to the build a basic Express app interacting with a Redis server and queue
 
 
-# Requirements
+## Requirements
 
 - All code will be compiled/interpreted on Ubuntu 18.04, Node 12.x, and Redis 5.0.7
 - All files should end with a new line
@@ -21,7 +21,7 @@
 - The code should use the `js` extension
 
 
-# Required Files for the Project
+## Required Files for the Project
 
 ### `package.json`
 
@@ -36,7 +36,7 @@ Click to show/hide file contents
 Run `$ npm install` when you have the `package.json`
 
 
-# Tasks
+## Tasks
 
 ### [0. Install a redis instance](./README.md)
 * Download, extract, and compile the latest stable Redis version (higher than 5.0.7 - https://redis.io/download):
@@ -90,5 +90,5 @@ Run `$ npm install` when you have the `package.json`
 * Data
 
 
-# Author  
+## Author  
 **Sabrina PAPEAU** - [Github](https://github.com/Holbiwan)

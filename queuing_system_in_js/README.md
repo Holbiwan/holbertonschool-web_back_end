@@ -1,4 +1,3 @@
-# Queuing System in JS
 
 ![Queuing js](https://zupimages.net/up/24/29/qgpn.png)
 

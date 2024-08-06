@@ -49,10 +49,26 @@ class Cache:
         data = self._redis.get(key)
         return fn(data) if fn else data
 
-    def get_str(self, key: str) -> str:
-        """ Get string data from redis. """
-        return self.get(key, fn=lambda d: d.decode("utf-8"))
+def replay(method: Callable):
+    """Function to show the history of calls of a function."""
+    instance = Cache()  # Assumes Cache instance is required
+    method_name = method.__qualname__
+    count_key = method_name
+    inputs_key = f"{method_name}:inputs"
+    outputs_key = f"{method_name}:outputs"
 
-    def get_int(self, key: str) -> int:
-        """ Get int data from redis. """
-        return self.get(key, fn=int)
+    call_count = instance._redis.get(count_key) or 0
+    inputs = instance._redis.lrange(inputs_key, 0, -1)
+    outputs = instance._redis.lrange(outputs_key, 0, -1)
+
+    print(f"{method.__name__} was called {call_count.decode()} times:")
+    for inp, out in zip(inputs, outputs):
+        print(f"{method.__name__}{inp.decode()} -> {out.decode()}")
+
+# Example usage
+if __name__ == "__main__":
+    cache = Cache()
+    cache.store("foo")
+    cache.store("bar")
+    cache.store(42)
+    replay(cache.store)

@@ -3,7 +3,7 @@
 
 import redis
 import uuid
-from typing import Union, Callable, Optional
+from typing import Union, Callable
 from functools import wraps
 
 
@@ -69,10 +69,10 @@ def replay(method: Callable):
 
     print(f"{method.__name__} was called {call_count} times:")
     for inp, out in zip(inputs, outputs):
-        # Convert byte strings to appropriate representations
-        print(f"{method.__name__}{eval(inp.decode())} -> {eval(out.decode())}")
-
-# Example usage
+        # Ensure the format matches exactly the requirement
+        inp_eval = eval(inp.decode())
+        out_eval = out.decode()
+        print(f"{method.__name__}(*{inp_eval}) -> {out_eval}")
 
 
 if __name__ == "__main__":
@@ -81,3 +81,4 @@ if __name__ == "__main__":
     cache.store("bar")
     cache.store(42)
     replay(cache.store)
+    replay(cache.get)

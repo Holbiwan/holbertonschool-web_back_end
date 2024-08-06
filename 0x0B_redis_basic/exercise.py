@@ -57,7 +57,7 @@ class Cache:
 
 def replay(method: Callable):
     """Function to show the history of calls of a function."""
-    instance = Cache()  # Create a Cache instance
+    instance = Cache()
     method_name = method.__qualname__
     count_key = f"{method_name}_calls"
     inputs_key = f"{method_name}:inputs"
@@ -69,16 +69,6 @@ def replay(method: Callable):
 
     print(f"{method.__name__} was called {call_count} times:")
     for inp, out in zip(inputs, outputs):
-        # Ensure the format matches exactly the requirement
-        inp_eval = eval(inp.decode())
-        out_eval = out.decode()
-        print(f"{method.__name__}(*{inp_eval}) -> {out_eval}")
-
-
-if __name__ == "__main__":
-    cache = Cache()
-    cache.store("foo")
-    cache.store("bar")
-    cache.store(42)
-    replay(cache.store)
-    replay(cache.get)
+        inp = eval(inp.decode())  # Evaluate to match tuple syntax
+        out = out.decode()
+        print(f"{method.__name__}(*{inp}) -> {out}")

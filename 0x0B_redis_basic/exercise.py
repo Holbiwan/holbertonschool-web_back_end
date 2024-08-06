@@ -3,12 +3,12 @@
 
 import redis
 import uuid
-from typing import Union
+from typing import Union, Callable, Optional
 
 class Cache:
-    """ Cache class """
+    """ Cache class for redis datastore """
     def __init__(self):
-        """ Constructor """
+        """ Constructor for initializing redis """
         self._redis = redis.Redis()
         self._redis.flushdb()
 
@@ -24,3 +24,12 @@ class Cache:
         if fn:
             return fn(data)
         return data
+
+    def get_str(self, key: str) -> str:
+        """ Get string data from redis """
+        return self.get(key, fn=lambda d: d.decode("utf-8"))
+    
+    def get_int(self, key: str) -> int:
+        """ Get int data from redis """
+        return self.get(key, fn=int)
+    

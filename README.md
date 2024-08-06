@@ -25,6 +25,7 @@ This project houses a variety of modules and exercises pivotal for mastering bac
 - Python Variable Annotations
 - User Authentication Services
 - unittests_in_js
+- 0x0B_redis_basic
 
 
 ### - Basic Authentication

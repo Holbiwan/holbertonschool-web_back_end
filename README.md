@@ -85,7 +85,6 @@ Unit testing with Async functions
 Learn how to use redis for basic operations
 Learn how to use redis as a simple cache
 
-
 - MySQL_Advanced
 How to create tables with constraints
 How to optimize queries by adding indexes

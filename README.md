@@ -26,6 +26,7 @@ This project houses a variety of modules and exercises pivotal for mastering bac
 - User Authentication Services
 - unittests_in_js
 - 0x0B_redis_basic
+- MySQL_Advanced
 
 ```
 - Basic Authentication
@@ -83,6 +84,14 @@ Unit testing with Async functions
 - 0x0B_redis_basic
 Learn how to use redis for basic operations
 Learn how to use redis as a simple cache
+
+
+- MySQL_Advanced
+How to create tables with constraints
+How to optimize queries by adding indexes
+What is and how to implement stored procedures and functions in MySQL
+What is and how to implement views in MySQL
+What is and how to implement triggers in MySQL
 ```
 ---
 
